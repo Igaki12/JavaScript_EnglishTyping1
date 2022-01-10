@@ -1,0 +1,17 @@
+body {
+  font-size: 6em;
+  text-align: center;
+}
+#count {
+  margin: 0;
+  font-weight: bold;
+  color: #888;
+}
+
+#wrap {
+  margin-top: 20px;
+  padding: 20px 10px;
+  background-color: #666;
+  font-weight: bold;
+  color: #fff;
+}
