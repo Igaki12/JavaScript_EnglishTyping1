@@ -1,3 +1,10 @@
+span {
+  transition: all 300ms 0s ease;
+}
+.add-color {
+  font-size: 0.5em;
+  color: #666;
+}
 body {
   font-size: 6em;
   text-align: center;
