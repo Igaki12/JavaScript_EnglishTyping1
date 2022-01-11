@@ -21,6 +21,7 @@ const textLists = [
   'ECMAScript','console.log','for while if switch',
   'var let const','Windows Mac Linux iOS Android',
   'programming'];
+next.textContent = `first>>　${textLists[0]}`;
 let checkTexts = [];
 let index = 0;
 const createText = (i) => {
@@ -49,15 +50,18 @@ const keyDown = e =>{
     checkTexts[0].className = 'add-color';
     checkTexts.shift();
     score++;
+    good.textContent = '　　良:' + score;
     if(!checkTexts.length) {
       index++;
       createText(index);
+      rest.textContent = '　　残り:' + (textLists.length-index) + '文';
     }
   }else if(e.key === 'Shift'){
     wrap.style.backgroundColor = '#666';
   }else{
     wrap.style.backgroundColor = 'crimson';
     miss++;
+    bad.textContent = '　　不可:' + miss;
   }
 }
 const rankCheck = score => {
@@ -86,6 +90,8 @@ start.addEventListener('click',() => {
   createText(index);
   start.style.display = 'none';
   flex.style.display = 'flex';
-
+  good.textContent = '　　良:' + score;
+  bad.textContent = '　　不可:' + miss;
+  rest.textContent = '　　残り:' + (textLists.length) + '文' ;
   document.addEventListener('keydown',keyDown);
 })
