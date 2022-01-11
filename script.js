@@ -1,5 +1,11 @@
 const wrap = document.getElementById('wrap');
 const start = document.getElementById('start');
+const prev = document.getElementById('prev');
+const next = document.getElementById('next');
+const flex = document.getElementById('flex');
+const good = document.getElementById('good');
+const bad = document.getElementById('bad');
+const rest = document.getElementById('rest');
 
 const textLists = [
   'Hello World','This is my App','How are you?',
@@ -16,29 +22,42 @@ const textLists = [
   'var let const','Windows Mac Linux iOS Android',
   'programming'];
 let checkTexts = [];
-const createText = () => {
-  const p = document.getElementById('text');
-  const rnd = Math.floor(Math.random() * textLists.length);
-  p.textContent = '';
-  checkTexts = textLists[rnd].split('').map(value => {
+let index = 0;
+const createText = (i) => {
+  const text = document.getElementById('text');
+  text.textContent = '';
+  checkTexts = textLists[i].split('').map(value => {
     const span = document.createElement('span');
     span.textContent = value;
-    p.appendChild(span);
+    text.appendChild(span);
     return span;
   })
+  if(i > 0){
+    prev.textContent = textLists[i - 1];
+  }
+  if(i < textLists.length - 1){
+    next.textContent = textLists[i + 1];
+  }else{
+    next.textContent = "練習終了";
+  }
 };
 let score = 0;
+let miss = 0;
 const keyDown = e =>{
   if(e.key === checkTexts[0].textContent){
     wrap.style.backgroundColor = '#666';
     checkTexts[0].className = 'add-color';
     checkTexts.shift();
     score++;
-    if(!checkTexts.length) createText();
+    if(!checkTexts.length) {
+      index++;
+      createText(index);
+    }
   }else if(e.key === 'Shift'){
     wrap.style.backgroundColor = '#666';
   }else{
     wrap.style.backgroundColor = 'crimson';
+    miss++;
   }
 }
 const rankCheck = score => {
@@ -62,17 +81,11 @@ const gameOver = id => {
     window.location.reload();
   }
 };
-const timer = () => {
-  let time = 60;
-  const count = document.getElementById('count');
-  const id = setInterval(() => {
-    if(time <= 0) gameOver(id);
-    count.textContent = time--;
-  },1000)
-};
+const timer = () => {};
 start.addEventListener('click',() => {
-  timer();
-  createText();
+  createText(index);
   start.style.display = 'none';
+  flex.style.display = 'flex';
+
   document.addEventListener('keydown',keyDown);
 })
