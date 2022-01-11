@@ -30,18 +30,37 @@ const createText = () => {
 let score = 0;
 const keyDown = e =>{
   if(e.key === checkTexts[0].textContent){
+    wrap.style.backgroundColor = '#666';
     checkTexts[0].className = 'add-color';
     checkTexts.shift();
     score++;
     if(!checkTexts.length) createText();
+  }else if(e.key === 'Shift'){
+    wrap.style.backgroundColor = '#666';
+  }else{
+    wrap.style.backgroundColor = 'crimson';
   }
 }
 const rankCheck = score => {
-  return score + "文字打てました！";
+  let text = '';
+  if(score < 100){
+    text = '【結果】\n Cランク\n 次ランクまであと' + (100-score) + '文字です。';
+  }else if(score < 200){
+    text = '【結果】\n Bランク\n 次ランクまであと' + (200-score) + '文字です。';
+  }else if(score < 300){
+    text = '【結果】\n Aランク\n 次ランクまであと' + (300-score) + '文字です。';
+
+  }else if(score >= 300){
+    text = '';
+  }
+  return score + "文字打てました！ \n" + text + " \n OK:Retry Cancel:Quit";
 };
 const gameOver = id => {
   clearInterval(id);
   const result = confirm(rankCheck(score));
+  if(result === true){
+    window.location.reload();
+  }
 };
 const timer = () => {
   let time = 60;
