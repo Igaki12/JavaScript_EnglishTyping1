@@ -17,7 +17,7 @@ next.textContent = `first>>　${textLists[0]}`;
 let checkTexts = [];
 let index = 0;
 const retryCheck = () => {
-  let msg = `【結果】\n 成功タイプ数:${score}　　失敗タイプ数:${miss} \n タイプ成功率:` + (100*score/(score+miss)) + `OK:Retry　　Cancel:Quit`;
+  let msg = `【結果】\n 成功タイプ数:${score}　　失敗タイプ数:${miss} \n タイプ成功率:` + (100*score/(score+miss)) + `% \n OK:Retry　　Cancel:Quit`;
   return msg;
 }
 function gameOver() {
@@ -29,12 +29,14 @@ function gameOver() {
 const createText = (i) => {
   const text = document.getElementById('text');
   text.textContent = '';
-  checkTexts = textLists[i].split('').map(value => {
-    const span = document.createElement('span');
-    span.textContent = value;
-    text.appendChild(span);
-    return span;
-  })
+  if(textLists[i]){
+    checkTexts = textLists[i].split('').map(value => {
+      const span = document.createElement('span');
+      span.textContent = value;
+      text.appendChild(span);
+      return span;
+    })
+  }
   if(i > 0){
     prev.textContent = textLists[i - 1];
   }
@@ -54,14 +56,17 @@ const keyDown = e =>{
     score++;
     good.textContent = '　　良:' + score;
     if(!checkTexts.length) {
-      if(textLists.length < 2){
-        alert('Finished!');
-        gameOver();
+      if((textLists.length-index) <= 1){
+        setTimeout(() => {
+          gameOver();
+        }, 1000);
+      }else{
+        index++;
+        createText(index);
+        rest.textContent = '　　残り:' + (textLists.length-index-1) + '文';
+
       }
-      index++;
-      createText(index);
-      rest.textContent = '　　残り:' + (textLists.length-index-1) + '文';
-    }
+          }
   }else if(e.key === 'Shift'){
     wrap.style.backgroundColor = '#666';
   }else{
