@@ -1,5 +1,6 @@
 const wrap = document.getElementById('wrap');
-const start = document.getElementById('start');
+const practice = document.getElementById('practice');
+const exam = document.getElementById('exam');
 const prev = document.getElementById('prev');
 const next = document.getElementById('next');
 const flex = document.getElementById('flex');
@@ -59,7 +60,7 @@ const keyDown = e =>{
       if((textLists.length-index) <= 1){
         setTimeout(() => {
           gameOver();
-        }, 1000);
+        }, 300);
       }else{
         index++;
         createText(index);
@@ -76,9 +77,10 @@ const keyDown = e =>{
   }
 }
 const timer = () => {};
-start.addEventListener('click',() => {
+practice.addEventListener('click',() => {
   createText(index);
-  start.style.display = 'none';
+  practice.style.display = 'none';
+  exam.style.display = 'none';
   flex.style.display = 'flex';
   good.textContent = '　　良:' + score;
   bad.textContent = '　　不可:' + miss;
