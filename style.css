@@ -7,7 +7,11 @@ body {
 .add-color {
   color: #777;
 }
+.hided {
+  display: none;
+}
 #count {
+  display: none;
   font-size: 6em;
   text-align: center;
   margin: 0;
@@ -15,11 +19,11 @@ body {
   color: #888;
 }
 .sentence {
-  font-size: 2em;
+  font-size: 1.5em;
   color: #666;
 }
 #wrap {
-  font-size: 5em;
+  font-size: 3em;
   text-align: center;
   margin-top: 20px;
   padding: 20px 10px;
@@ -28,5 +32,8 @@ body {
   color: #fff;
 }
 #flex {
+  display: none;
+}
+#exam-screen {
   display: none;
 }
