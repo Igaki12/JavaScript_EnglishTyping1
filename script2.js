@@ -1,4 +1,4 @@
-import { exportList } from "./script.js";
+import { exportList } from "script.js";
 const count = document.getElementById('count');
 
 const textLists = exportList();
