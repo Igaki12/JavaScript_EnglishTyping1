@@ -60,6 +60,9 @@ const textLists = [{
   text:"A dendritic cell is a type of phagocyte and a type of antigen-presenting cell.",
 },
 ];
+export function exportList(){
+  return textLists;
+}
 next.textContent = `first>>　${textLists[0].text}`;
 let checkTexts = [];
 let index = 0;
