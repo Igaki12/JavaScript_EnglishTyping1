@@ -11,6 +11,20 @@ const rest = document.getElementById('rest');
 const practice_screen = document.getElementById('practice-screen');
 const exam_screen = document.getElementById('exam-screen');
 
+// let outputElement = document.getElementById('outputCsv');
+// function getCsv(dataPath){
+//   const request = new XMLHttpRequest();
+//   request.addEventListener('load', (event) => {
+//     const response = event.target.responseText;
+//     outputElement.innerHTML = response;
+//   })
+//   request.open('GET',dataPath,true);
+//   request.send();
+// }
+// getCsv('./textList.csv');
+
+
+
 const textLists = [{
   word:"essential",
   text:"It's essential that we act quickly.",
@@ -98,7 +112,6 @@ const keyDown = e =>{
         index++;
         createText(index);
         rest.textContent = '　　残り:' + (textLists.length-index-1) + '文';
-
       }
           }
   }else if(e.key === 'Shift'){
@@ -120,13 +133,3 @@ practice.addEventListener('click',() => {
   document.addEventListener('keydown',keyDown);
 })
 
-
-const createQuestion = () => {
-  
-}
-exam.addEventListener('click',() =>{
-  practice.style.display = 'none';
-  exam.style.display = 'none';
-  practice_screen.display = 'none';
-  exam_screen.display = 'display';
-})
