@@ -62,6 +62,10 @@ const textLists = [{
 },
 ];
 
+const updateRating = () => {
+  rating.textContent = `良:${score}　　不可:${miss}　　残り:${textLists.length - index} / ${textLists.length} 文`;
+}
+
 next.textContent = `first>>　${textLists[0].text}`;
 let checkTexts = [];
 let index = 0;
@@ -106,7 +110,7 @@ const keyDown = e =>{
     checkTexts[0].style = 'color:#777;';
     checkTexts.shift();
     score++;
-    rating.textContent = `良:${score}　　不可:${miss}　　残り:${textLists.length - index - 1} 文`;
+    updateRating();
     if(!checkTexts.length) {
       if((textLists.length-index) <= 1){
         setTimeout(() => {
@@ -115,7 +119,7 @@ const keyDown = e =>{
       }else{
         index++;
         createText(index);
-        rating.textContent = `良:${score}　　不可:${miss}　　残り:${textLists.length - index - 1} 文`;
+        updateRating();
       }
           }
   }else if(e.key === 'Shift'){
@@ -123,7 +127,7 @@ const keyDown = e =>{
   }else{
     wrap.style.backgroundColor = 'crimson';
     miss++;
-    rating.textContent = `良:${score}　　不可:${miss}　　残り:${textLists.length - index - 1} 文`;
+    updateRating();
   }
 }
 const pressBackButton = () => {
@@ -132,7 +136,7 @@ const pressBackButton = () => {
   }
   index--;
   createText(index);
-  rating.textContent = `良:${score}　　不可:${miss}　　残り:${textLists.length - index - 1} 文`;
+  updateRating();
 }
 const pressPassButton = () => {
   if(index > textLists.length - 2){
@@ -140,14 +144,14 @@ const pressPassButton = () => {
   }
   index++;
     createText(index);
-    rating.textContent = `良:${score}　　不可:${miss}　　残り:${textLists.length - index - 1} 文`;
+    updateRating();
 }
 practice.addEventListener('click',() => {
   createText(index);
   practice.style.display = 'none';
   exam.style.display = 'none';
   flex.style.display = 'flex';
-  rating.textContent = `良:${score}　　不可:${miss}　　残り:${textLists.length - index - 1} 文`;
+  updateRating();
   document.addEventListener('keydown',keyDown);
   back_btn.addEventListener('click',pressBackButton);
   pass_btn.addEventListener('click',pressPassButton);
