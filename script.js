@@ -1,4 +1,3 @@
-
 const wrap = document.getElementById('wrap');
 const practice = document.getElementById('practice');
 const exam = document.getElementById('exam');
@@ -67,7 +66,7 @@ const updateRating = () => {
 }
 
 next.textContent = `first>>　${textLists[0].text}`;
-let checkTexts = [];
+let checkAnswer = [];
 let index = 0;
 let time = 0;
 const retryCheck = () => {
@@ -84,7 +83,7 @@ const createText = (i) => {
   const text = document.getElementById('text');
   text.textContent = '';
   if(textLists[i]){
-    checkTexts = textLists[i].text.split('').map(value => {
+    checkAnswer = textLists[i].text.split('').map(value => {
       const span = document.createElement('span');
       span.textContent = value;
       text.appendChild(span);
@@ -105,13 +104,13 @@ const createText = (i) => {
 let score = 0;
 let miss = 0;
 const keyDown = e =>{
-  if(e.key === checkTexts[0].textContent){
+  if(e.key === checkAnswer[0].textContent){
     wrap.style.backgroundColor = '#666';
-    checkTexts[0].style = 'color:#777;';
-    checkTexts.shift();
+    checkAnswer[0].style = 'color:#777;';
+    checkAnswer.shift();
     score++;
     updateRating();
-    if(!checkTexts.length) {
+    if(!checkAnswer.length) {
       if((textLists.length-index) <= 1){
         setTimeout(() => {
           gameOver();
@@ -131,7 +130,7 @@ const keyDown = e =>{
   }
 }
 const pressBackButton = () => {
-  if(index < 0){
+  if(index < 1){
     return
   }
   index--;

@@ -14,15 +14,22 @@ body {
   font-size: 50px;
   text-align: left;
   margin: 0 0 0 0px;
-  letter-spacing: 0;
-  color: #666;
+  letter-spacing: -5px;
 }
 .sentence {
   font-size: 1.5em;
   color: #666;
 }
+.initial {
+  font-size: 1em;
+  color: rgb(190, 190, 190);
+}
+.second-initial {
+  font-size: 1em;
+  color: rgb(153, 152, 152);
+}
 #wrap {
-  transition: all 50ms 0s ease;
+  transition: all 200ms 0s ease;
   text-align: center;
   margin-top: 0px;
   padding: 20px 10px;
@@ -39,13 +46,11 @@ body {
 }
 #answer {
   font-size: 3em;
-  color: #666;
 }
 #flex {
   display: none;
   justify-content: space-between;
-}
-#position-fixing {
+  width: 98%;
   position: absolute;
-  bottom: 100px;
+  bottom: 0%;
 }
