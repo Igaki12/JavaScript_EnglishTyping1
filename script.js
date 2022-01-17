@@ -1,12 +1,13 @@
+
 const wrap = document.getElementById('wrap');
 const practice = document.getElementById('practice');
 const exam = document.getElementById('exam');
 const prev = document.getElementById('prev');
 const next = document.getElementById('next');
 const flex = document.getElementById('flex');
-const good = document.getElementById('good');
-const bad = document.getElementById('bad');
-const rest = document.getElementById('rest');
+const rating = document.getElementById('rating');
+const back_btn = document.getElementById('back_btn');
+const pass_btn = document.getElementById('pass_btn');
 
 const practice_screen = document.getElementById('practice-screen');
 const exam_screen = document.getElementById('exam-screen');
@@ -60,9 +61,7 @@ const textLists = [{
   text:"A dendritic cell is a type of phagocyte and a type of antigen-presenting cell.",
 },
 ];
-export function exportList(){
-  return textLists;
-}
+
 next.textContent = `first>>　${textLists[0].text}`;
 let checkTexts = [];
 let index = 0;
@@ -90,6 +89,8 @@ const createText = (i) => {
   }
   if(i > 0){
     prev.textContent = textLists[i - 1].text;
+  }else{
+    prev.textContent = "練習開始";
   }
   if(i < textLists.length - 1){
     next.textContent = textLists[i + 1].text;
@@ -105,7 +106,7 @@ const keyDown = e =>{
     checkTexts[0].style = 'color:#777;';
     checkTexts.shift();
     score++;
-    good.textContent = '　　良:' + score;
+    rating.textContent = `良:${score}　　不可:${miss}　　残り:${textLists.length - index - 1} 文`;
     if(!checkTexts.length) {
       if((textLists.length-index) <= 1){
         setTimeout(() => {
@@ -114,7 +115,7 @@ const keyDown = e =>{
       }else{
         index++;
         createText(index);
-        rest.textContent = '　　残り:' + (textLists.length-index-1) + '文';
+        rating.textContent = `良:${score}　　不可:${miss}　　残り:${textLists.length - index - 1} 文`;
       }
           }
   }else if(e.key === 'Shift'){
@@ -122,17 +123,33 @@ const keyDown = e =>{
   }else{
     wrap.style.backgroundColor = 'crimson';
     miss++;
-    bad.textContent = '　　不可:' + miss;
+    rating.textContent = `良:${score}　　不可:${miss}　　残り:${textLists.length - index - 1} 文`;
   }
+}
+const pressBackButton = () => {
+  if(index < 0){
+    return
+  }
+  index--;
+  createText(index);
+  rating.textContent = `良:${score}　　不可:${miss}　　残り:${textLists.length - index - 1} 文`;
+}
+const pressPassButton = () => {
+  if(index > textLists.length - 2){
+    return
+  }
+  index++;
+    createText(index);
+    rating.textContent = `良:${score}　　不可:${miss}　　残り:${textLists.length - index - 1} 文`;
 }
 practice.addEventListener('click',() => {
   createText(index);
   practice.style.display = 'none';
   exam.style.display = 'none';
   flex.style.display = 'flex';
-  good.textContent = '　　良:' + score;
-  bad.textContent = '　　不可:' + miss;
-  rest.textContent = '　　残り:' + (textLists.length-1) + '文' ;
+  rating.textContent = `良:${score}　　不可:${miss}　　残り:${textLists.length - index - 1} 文`;
   document.addEventListener('keydown',keyDown);
+  back_btn.addEventListener('click',pressBackButton);
+  pass_btn.addEventListener('click',pressPassButton);
 })
 
