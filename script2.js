@@ -1,5 +1,7 @@
 const count = document.getElementById('count');
 const rating = document.getElementById('rating');
+const flex = document.getElementById('flex');
+flex.style.display = 'flex';
 
 const question = document.getElementById('question');
 const answer = document.getElementById('answer');
@@ -40,11 +42,11 @@ const textLists = [{
 },
 ];
 let index;
-
+let resultFlag;
 let score = 0;
 let miss = 0;
 const updateRating = () => {
-  rating.textContent = `良:${score}　　不可:${miss}　　残り:${textLists.length - score - miss} / ${textLists.length} 文`;
+  rating.textContent = `正解:${score}　　不正解:${miss}　　残り:${textLists.length - score - miss} / ${textLists.length} 文`;
 }
 let countMarks = [];
 function renderCount(l){
@@ -58,8 +60,9 @@ function renderCount(l){
   })
 }
 function decreaseCount(r){
-  if(r > countMarks.length){
+  if(r > countMarks.length && resultFlag === 0){
     miss++;
+    resultFlag = 1;
     updateRating();
     giveUp();
   }else{
@@ -71,15 +74,27 @@ function decreaseCount(r){
 }
 
 function giveUp(){
+  count.style.letterSpacing = '0';
+  count.style.textAlign = 'center';
   count.textContent = 'Press Enter Key';
+  count.style.color = 'rgb(17, 133, 2)';
+  count.style.fontWeight = 'bold';
   wrap.style.backgroundColor = 'rgb(17, 133, 2)';
-  checkAnswer.style.opacity = 1;
-  // document.addEventListener('keydown',(e) => {
-  //   if(e.key === 'Enter'){
-  //     index = chooseIndex();
-  //     createText(index);
-  //   }
-  // })
+  for(let i=0;i<checkAnswer.length;i++){
+    checkAnswer[i].style.opacity = 1;
+    checkAnswer[i].style.color = '#FFF';
+  }
+  document.addEventListener('keydown',(e) => {
+    if(e.key === 'Enter'){
+      count.style.letterSpacing = '-5px';
+      count.style.color = '#666';
+      count.style.fontWeight = 'normal';
+      count.style.textAlign = 'left';
+      index = chooseIndex();
+      createText(index);
+      return;
+    }
+  })
 }
 
 function appearWords() {
@@ -97,10 +112,10 @@ function appearWords() {
         checkAnswer0.style.opacity = 1;
         resolve();
       }
-    }, 3000);
+    }, 2000);
     document.addEventListener('keydown', (e) => {
       if (e.key === checkAnswer0.textContent)
-        reject;
+        reject();
     });
   });
   appearWord1.then(() => {
@@ -111,11 +126,11 @@ function appearWords() {
           checkAnswer1.style.opacity = 1;
           decreaseCount(1);
           resolve();
-        }, 5000);
+        }, 3000);
       }
       document.addEventListener('keydown', (e) => {
         if (e.key === checkAnswer0.textContent)
-          reject;
+          reject();
       });
     });
     appearWord2.then(() => {
@@ -126,11 +141,11 @@ function appearWords() {
             checkAnswer2.style.opacity = 1;
             decreaseCount(1);
             resolve();
-          }, 5000);
+          }, 3000);
         }
         document.addEventListener('keydown', (e) => {
           if (e.key === checkAnswer0.textContent)
-            reject;
+            reject();
         });
       });
     });
@@ -140,14 +155,15 @@ function appearWords() {
 const createText = (i) => {
   question,answer.textContent = '';
   if(textLists[i]){
+    resultFlag = 0;
     checkAnswer = textLists[i].text.split('').map((value) => {
       const span = document.createElement('span');
       span.textContent = value;
       span.style.opacity = 0;
       answer.appendChild(span);
+      question.textContent = textLists[i].word + ":";
       return span;
     })
-    question.textContent = textLists[i].word + ":";
     let countNum = 10;
     countNum = textLists[i].text.split('').length * 0.2;
     console.log(countNum);
@@ -156,12 +172,22 @@ const createText = (i) => {
   }
 }
 
-
+const gameOver = () => {
+  const result = confirm(resultCheck());
+  if (result === true){
+    window.location.reload();
+  }
+}
+const resultCheck = () => {
+  let msg = `【結果】\n 正解数:${score}　　不正解数:${miss} \n 正解率:` + (100*score/(score+miss)) + `% \n OK:Retry　　Cancel:Quit`;
+  return msg;
+}
 
 const keyDown = e => {
   if(e.key === checkAnswer[0].textContent){
     wrap.style.backgroundColor = '#666';
     checkAnswer[0].style.color = '#FFF';
+    checkAnswer[0].style.opacity = 1;
     checkAnswer.shift();
     if(e.key === ' '){
       console.log("appearWord1");
@@ -169,9 +195,15 @@ const keyDown = e => {
     }
     if(!checkAnswer.length) {
       if((textLists.length - score - miss) <= 1){
+        score++;
+        resultFlag = 1;
+        updateRating();
+        gameOver();
       }else{
         score++;
-        createText(1);
+        resultFlag = 1;
+        index = chooseIndex();
+        createText(index);
         updateRating();
       }
     }
@@ -179,6 +211,9 @@ const keyDown = e => {
     wrap.style.backgroundColor = '#666';
   }else{
     wrap.style.backgroundColor = 'crimson';
+    checkAnswer[0].style.color = '#FFF';
+    checkAnswer[0].style.opacity = 1;
+    checkAnswer.shift();
     decreaseCount(1);
   }
 }
@@ -187,14 +222,15 @@ let chosenIndex = [];
 let rnd = 0;
 const chooseIndex = () => {
   do{
-    rnd = Math.floor(Math.random() * unChosenIndex.length);
+    rnd = Math.floor(Math.random() * textLists.length);
   }while(unChosenIndex.findIndex((value) => value === rnd) === -1)
   chosenIndex.push(rnd);
-  unChosenIndex = unChosenIndex.filter((value)=> value != rnd)
+  let newIndex = unChosenIndex.filter((value)=> value != rnd)
+  unChosenIndex = newIndex;
+  console.log(unChosenIndex);
   return rnd;
 }
-updateRating;
+updateRating();
 index = chooseIndex();
-console.log(index);
 createText(index);
 document.addEventListener('keydown',keyDown);

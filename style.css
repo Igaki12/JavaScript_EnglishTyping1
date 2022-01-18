@@ -41,11 +41,11 @@ body {
   font-size: 3em;
 }
 #question {
-  font-size: 2em;
+  font-size: 4em;
   font-weight: bold;
 }
 #answer {
-  font-size: 3em;
+  font-size: 2.5em;
 }
 #flex {
   display: none;
