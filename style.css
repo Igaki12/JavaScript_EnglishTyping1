@@ -46,6 +46,8 @@ body {
 }
 #answer {
   font-size: 40px;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 #flex {
   display: none;
