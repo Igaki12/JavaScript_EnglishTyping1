@@ -191,13 +191,15 @@ const keyDown = e => {
   if(e.key === checkAnswer[0].textContent){
     if(e.key === ' '){
       console.log("appearWord1");
-      appearWords();
       checkAnswer[0].style.backgroundColor = '#777';
     }
     wrap.style.backgroundColor = '#666';
     checkAnswer[0].style.color = '#FFF';
     checkAnswer[0].style.opacity = 1;
     checkAnswer.shift();
+    if(e.key === ' '){
+      appearWords();
+    }
     if(!checkAnswer.length) {
       if((textLists.length - score - miss) <= 1){
         score++;
@@ -223,6 +225,9 @@ const keyDown = e => {
     checkAnswer[0].style.color = '#FFF';
     checkAnswer[0].style.opacity = 1;
     checkAnswer.shift();
+    if(checkAnswer[0].textContent === ' '){
+      appearWords();
+    }
     decreaseCount(1);
   }
 }
