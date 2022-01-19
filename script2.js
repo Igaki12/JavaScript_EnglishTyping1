@@ -44,7 +44,7 @@ const answer = document.getElementById('answer');
 //   text:"A dendritic cell is a type of phagocyte and a type of antigen-presenting cell.",
 // },
 // ];
-let checkAnswer;
+let checkAnswer = [];
 let index;
 let resultFlag;
 let score = 0;
