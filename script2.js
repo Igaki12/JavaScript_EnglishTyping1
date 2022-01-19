@@ -189,20 +189,23 @@ const resultCheck = () => {
 
 const keyDown = e => {
   if(e.key === checkAnswer[0].textContent){
+    if(e.key === ' '){
+      console.log("appearWord1");
+      appearWords();
+      checkAnswer[0].style.backgroundColor = '#555';
+    }
     wrap.style.backgroundColor = '#666';
     checkAnswer[0].style.color = '#FFF';
     checkAnswer[0].style.opacity = 1;
     checkAnswer.shift();
-    if(e.key === ' '){
-      console.log("appearWord1");
-      appearWords();
-    }
     if(!checkAnswer.length) {
       if((textLists.length - score - miss) <= 1){
         score++;
         resultFlag = 1;
         updateRating();
-        gameOver();
+        setInterval(() => {
+          gameOver();
+        },210);
       }else{
         score++;
         resultFlag = 1;
