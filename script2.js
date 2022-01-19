@@ -192,9 +192,9 @@ const keyDown = e => {
     if(e.key === ' '){
       console.log("appearWord1");
       appearWords();
+      checkAnswer[0].style.backgroundColor = '#777';
     }
     wrap.style.backgroundColor = '#666';
-    checkAnswer[0].style.backgroundColor = '#777';
     checkAnswer[0].style.color = '#FFF';
     checkAnswer[0].style.opacity = 1;
     checkAnswer.shift();
@@ -217,7 +217,9 @@ const keyDown = e => {
     wrap.style.backgroundColor = '#666';
   }else{
     wrap.style.backgroundColor = 'crimson';
-    checkAnswer[0].style.backgroundColor = '#777';
+    if(checkAnswer[0].textContent === ' '){
+      checkAnswer[0].style.backgroundColor = '#777';
+    }
     checkAnswer[0].style.color = '#FFF';
     checkAnswer[0].style.opacity = 1;
     checkAnswer.shift();
