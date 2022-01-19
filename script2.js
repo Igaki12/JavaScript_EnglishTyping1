@@ -94,8 +94,7 @@ function giveUp(){
       count.style.color = '#666';
       count.style.fontWeight = 'normal';
       count.style.textAlign = 'left';
-      index = chooseIndex();
-      createText(index);
+      createText();
       return;
     }
   })
@@ -156,20 +155,21 @@ function appearWords() {
   });
 }
 
-const createText = (i) => {
+const createText = () => {
   question,answer.textContent = '';
-  if(textLists[i]){
+  index = chooseIndex();
+  if(textLists[index]){
     resultFlag = 0;
-    checkAnswer = textLists[i].text.split('').map((value) => {
+    checkAnswer = textLists[index].text.split('').map((value) => {
       const span = document.createElement('span');
       span.textContent = value;
       span.style.opacity = 0;
       answer.appendChild(span);
-      question.textContent = textLists[i].word + ":";
+      question.textContent = textLists[index].word + ":";
       return span;
     })
     let countNum = 10;
-    countNum = textLists[i].text.split('').length * 0.2;
+    countNum = textLists[index].text.split('').length * 0.2;
     console.log(countNum);
     renderCount(countNum);
     appearWords();
@@ -206,8 +206,7 @@ const keyDown = e => {
       }else{
         score++;
         resultFlag = 1;
-        index = chooseIndex();
-        createText(index);
+        createText();
         updateRating();
       }
     }
@@ -235,6 +234,5 @@ const chooseIndex = () => {
   return rnd;
 }
 updateRating();
-index = chooseIndex();
-createText(index);
+createText();
 document.addEventListener('keydown',keyDown);
