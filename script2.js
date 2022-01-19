@@ -1,3 +1,6 @@
+import { exportList } from "./common.js";
+const textLists = exportList();
+
 const count = document.getElementById('count');
 const rating = document.getElementById('rating');
 const flex = document.getElementById('flex');
@@ -6,41 +9,41 @@ flex.style.display = 'flex';
 const question = document.getElementById('question');
 const answer = document.getElementById('answer');
 
-const textLists = [{
-  word:"essential",
-  text:"It is essential that we act quickly.",
-},{
-  word:"nourish",
-  text:"Sleep and nourishing food are essential to health.",
-},{
-  word:"fatigue",
-  text:"I was fatigued with my work.",
-},{
-  word:"inflammation",
-  text:"You should go to the hospital if the inflammation wouldn't be reduced.",
-},{
-  word:"pancreas",
-  text:"The pancreas produces several hormones, including insulin.",
-},{
-  word:"spleen",
-  text:"The spleen is an organ that is part of the lymphatic system.",
-},{
-  word:"synthetic",
-  text:"All men are arrogant is a synthetic proposition.",
-},{
-  word:"gall bladder",
-  text:"A steroid acid is produced in the liver and stored with the gall bladder.",
-},{
-  word:"tumor",
-  text:"Tumor is an abnormal mass of tissue that results when cells divide more than they should or do not die when they should.",
-},{
-  word:"curvature",
-  text:"Spinal curvature is a disease of abnormal curving of the spine.",
-},{
-  word:"dendritic cell",
-  text:"A dendritic cell is a type of phagocyte and a type of antigen-presenting cell.",
-},
-];
+// const textLists = [{
+//   word:"essential",
+//   text:"It is essential that we act quickly.",
+// },{
+//   word:"nourish",
+//   text:"Sleep and nourishing food are essential to health.",
+// },{
+//   word:"fatigue",
+//   text:"I was fatigued with my work.",
+// },{
+//   word:"inflammation",
+//   text:"You should go to the hospital if the inflammation wouldn't be reduced.",
+// },{
+//   word:"pancreas",
+//   text:"The pancreas produces several hormones, including insulin.",
+// },{
+//   word:"spleen",
+//   text:"The spleen is an organ that is part of the lymphatic system.",
+// },{
+//   word:"synthetic",
+//   text:"All men are arrogant is a synthetic proposition.",
+// },{
+//   word:"gall bladder",
+//   text:"A steroid acid is produced in the liver and stored with the gall bladder.",
+// },{
+//   word:"tumor",
+//   text:"Tumor is an abnormal mass of tissue that results when cells divide more than they should or do not die when they should.",
+// },{
+//   word:"curvature",
+//   text:"Spinal curvature is a disease of abnormal curving of the spine.",
+// },{
+//   word:"dendritic cell",
+//   text:"A dendritic cell is a type of phagocyte and a type of antigen-presenting cell.",
+// },
+// ];
 let index;
 let resultFlag;
 let score = 0;
