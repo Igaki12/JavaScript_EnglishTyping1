@@ -9,6 +9,9 @@ flex.style.display = 'flex';
 const question = document.getElementById('question');
 const answer = document.getElementById('answer');
 
+const stop = document.getElementById('stop_appearWords');
+const pass_btn = document.getElementById('pass_btn');
+
 // const textLists = [{
 //   word:"essential",
 //   text:"It is essential that we act quickly.",
@@ -110,6 +113,9 @@ function appearWords() {
   //   checkAnswer[0].style.opacity ^= 1;
   // },500);
   const appearWord1 = new Promise((resolve, reject) => {
+    if(stop.value === 'checked'){
+      reject();
+    }
     setTimeout(() => {
       if (checkAnswer.length > 1 && checkAnswer[0].textContent != ' ') {
         checkAnswer0.style.opacity = 1;
