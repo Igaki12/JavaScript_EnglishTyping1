@@ -113,7 +113,7 @@ function appearWords() {
   //   checkAnswer[0].style.opacity ^= 1;
   // },500);
   const appearWord1 = new Promise((resolve, reject) => {
-    if(stop.value === 'checked'){
+    if(stop.checked){
       reject();
     }
     setTimeout(() => {
@@ -129,6 +129,9 @@ function appearWords() {
   });
   appearWord1.then(() => {
     const appearWord2 = new Promise((resolve, reject) => {
+      if(stop.checked){
+        reject();
+      }
       if (checkAnswer.length > 5 && checkAnswer[1].textContent != ' ') {
         setTimeout(() => {
           checkAnswer1.className = 'second-initial';
@@ -144,6 +147,9 @@ function appearWords() {
     });
     appearWord2.then(() => {
       const appearWord3 = new Promise((resolve, reject) => {
+        if(stop.checked){
+          reject();
+        }
         if (checkAnswer.length > 5 && checkAnswer[2].textContent != ' ') {
           setTimeout(() => {
             checkAnswer2.className = 'second-initial';
