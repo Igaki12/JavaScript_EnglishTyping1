@@ -271,10 +271,10 @@ const keyDown = e => {
   }
 }
 const pressPassButton = () => {
-  if(unChosenIndex.length < 1){
-    return;
+  if(unChosenIndex.length > 0 && checkAnswer.length > 0){
+    decreaseCount(100);
   }
-  decreaseCount(100);
+  return
 }
 let unChosenIndex = Array(textLists.length).fill("").map((value,index)=> index);
 let chosenIndex = [];
