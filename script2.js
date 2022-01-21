@@ -130,7 +130,7 @@ function appearWords() {
   appearWord0.then(()=> {
     const appearWord1 = new Promise((resolve, reject) => {
       console.log("start-appearWords");
-      if (checkAnswer0.style.opacity === 0){
+      if (checkAnswer0.style.opacity === '0'){
         console.log("styleChanging");
         checkAnswer0.style.color = 'rgb(153, 152, 152)';
         checkAnswer0.style.opacity = 1;
@@ -148,7 +148,7 @@ function appearWords() {
 
   appearWord1.then(() => {
     const appearWord2 = new Promise((resolve, reject) => {
-      if (checkAnswer1.style.opacity === 0){
+      if (checkAnswer1.style.opacity === '0'){
         checkAnswer1.style.color = 'rgb(153, 152, 152)';
         checkAnswer1.style.opacity = 1;
         decreaseCount(1);
@@ -166,7 +166,7 @@ function appearWords() {
     });
     appearWord2.then(() => {
       const appearWord3 = new Promise((resolve, reject) => {
-        if (checkAnswer2.style.opacity === 0){
+        if (checkAnswer2.style.opacity === '0'){
           checkAnswer2.style.color = 'rgb(153, 152, 152)';
           checkAnswer2.style.opacity = 1;
           decreaseCount(1);
