@@ -271,7 +271,7 @@ const keyDown = e => {
   }
 }
 const pressPassButton = () => {
-  if(unChosenIndex.length > 0 && checkAnswer.length > 0){
+  if(unChosenIndex.length > 0 && resultFlag === 0){
     decreaseCount(100);
   }
   return
