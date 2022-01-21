@@ -115,10 +115,11 @@ function appearWords() {
 
   const appearWord0 = new Promise((resolve,reject) => {
     if(stop.checked){
+      alert("stopChecked");
       reject();
     }
     setTimeout(()=> {
-      if (checkAnswer.length > 1&& checkAnswer[0].textContent != ' '){
+      if (checkAnswer.length > 1 && checkAnswer[0].textContent != ' '){
         resolve();
       }
     },2000);
