@@ -257,7 +257,9 @@ const keyDown = e => {
   }else if(e.key === 'Shift'){
     wrap.style.backgroundColor = '#666';
   }else{
-    wrap.style.backgroundColor = 'crimson';
+    if (e.key != 'Enter'){
+      wrap.style.backgroundColor = 'crimson';
+    }
     if(checkAnswer[0].textContent === ' '){
       checkAnswer[0].style.backgroundColor = '#777';
     }
