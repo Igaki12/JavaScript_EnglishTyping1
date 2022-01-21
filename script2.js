@@ -123,9 +123,11 @@ function appearWords() {
         resolve();
       }
     },2000);
-    if (e.key === checkAnswer0.textContent){
-      reject();
-    }
+    document.addEventListener('keydown',(e)=> {
+      if (e.key === checkAnswer0.textContent){
+        reject();
+      }
+    })
   })
   appearWord0.then(()=> {
     const appearWord1 = new Promise((resolve, reject) => {
