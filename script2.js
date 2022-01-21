@@ -129,7 +129,9 @@ function appearWords() {
   })
   appearWord0.then(()=> {
     const appearWord1 = new Promise((resolve, reject) => {
+      console.log("start-appearWords");
       if (checkAnswer0.style.opacity === 0){
+        console.log("styleChanging");
         checkAnswer0.style.color = 'rgb(153, 152, 152)';
         checkAnswer0.style.opacity = 1;
       }
