@@ -102,7 +102,7 @@ function giveUp(){
     }
   })
 }
-
+let appearWordsFlag = 0;
 function appearWords() {
   const checkAnswer0 = checkAnswer[0];
   const checkAnswer1 = checkAnswer[1];
@@ -113,9 +113,11 @@ function appearWords() {
   // },500);
 
   const appearWord0 = new Promise((resolve,reject) => {
-    if(stop.checked){
+    if(appearWordsFlag > 0){
+      appearWordsFlag = 0;
       reject();
     }
+    appearWordsFlag ++;
     setTimeout(()=> {
       if (checkAnswer.length > 1 && checkAnswer[0].textContent != ' '){
         resolve();
@@ -123,6 +125,7 @@ function appearWords() {
     },2000);
     document.addEventListener('keydown',(e)=> {
       if (e.key === checkAnswer0.textContent){
+        appearWordsFlag = 0;
         reject();
       }
     })
@@ -130,6 +133,7 @@ function appearWords() {
   appearWord0.then(()=> {
     const appearWord1 = new Promise((resolve, reject) => {
       if(stop.checked){
+        appearWordsFlag = 0;
         reject();
       }
       if (checkAnswer0.style.opacity === '0'){
@@ -143,6 +147,7 @@ function appearWords() {
       },2000);
       document.addEventListener('keydown', (e) => {
         if (e.key === checkAnswer0.textContent)
+          appearWordsFlag = 0;
           reject();
       });
     });
@@ -150,6 +155,7 @@ function appearWords() {
   appearWord1.then(() => {
     const appearWord2 = new Promise((resolve, reject) => {
       if(stop.checked){
+        appearWordsFlag = 0;
         reject();
       }
       if (checkAnswer1.style.opacity === '0'){
@@ -164,12 +170,15 @@ function appearWords() {
         }, 3000);
       }
       document.addEventListener('keydown', (e) => {
-        if (e.key === checkAnswer0.textContent)
+        if (e.key === checkAnswer0.textContent){
+          appearWordsFlag = 0;
           reject();
+        }
       });
     });
     appearWord2.then(() => {
       const appearWord3 = new Promise((resolve, reject) => {
+        appearWordsFlag = 0;
         if(stop.checked){
           reject();
         }
