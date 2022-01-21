@@ -203,10 +203,7 @@ const resultCheck = () => {
 }
 
 const keyDown = e => {
-  if(e.key === ' '){
-    // stop.disable = true;
-    stop.blur();
-  }
+  stop.blur();
   if(e.key === checkAnswer[0].textContent){
     if(e.key === ' '){
       checkAnswer[0].style.backgroundColor = '#777';

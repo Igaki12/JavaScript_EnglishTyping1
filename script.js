@@ -69,6 +69,8 @@ const createText = (i) => {
 let score = 0;
 let miss = 0;
 const keyDown = e =>{
+  back_btn.blur();
+  pass_btn.blur();
   if(e.key === checkAnswer[0].textContent){
     wrap.style.backgroundColor = '#666';
     checkAnswer[0].style = 'color:#777;';
