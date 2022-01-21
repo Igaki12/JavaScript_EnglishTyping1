@@ -129,7 +129,7 @@ function appearWords() {
   })
   appearWord0.then(()=> {
     const appearWord1 = new Promise((resolve, reject) => {
-      checkAnswer0.style.className = 'second-initial';
+      checkAnswer0.style.color = 'rgb(153, 152, 152)';
       checkAnswer0.style.opacity = 1;
       setTimeout(()=> {
         if (checkAnswer.length > 5 && checkAnswer[1].textContent != ' '){
@@ -144,7 +144,7 @@ function appearWords() {
 
   appearWord1.then(() => {
     const appearWord2 = new Promise((resolve, reject) => {
-      checkAnswer1.style.className = 'second-initial';
+      checkAnswer1.style.color = 'rgb(153, 152, 152)';
       checkAnswer1.style.opacity = 1;
       decreaseCount(1);
 
@@ -160,7 +160,7 @@ function appearWords() {
     });
     appearWord2.then(() => {
       const appearWord3 = new Promise((resolve, reject) => {
-        checkAnswer2.style.className = 'second-initial';
+        checkAnswer2.style.color = 'rgb(153, 152, 152)';
         checkAnswer2.style.opacity = 1;
         decreaseCount(1);
       });
