@@ -108,7 +108,6 @@ function appearWords() {
   const checkAnswer1 = checkAnswer[1];
   const checkAnswer2 = checkAnswer[2];
   checkAnswer0.className = 'initial';
-  checkAnswer0.className = 'second-initial';
   // setInterval(() => {
   //   checkAnswer[0].style.opacity ^= 1;
   // },500);
