@@ -115,7 +115,6 @@ function appearWords() {
 
   const appearWord0 = new Promise((resolve,reject) => {
     if(stop.checked){
-      alert("stopChecked");
       reject();
     }
     setTimeout(()=> {
@@ -204,9 +203,12 @@ const resultCheck = () => {
 }
 
 const keyDown = e => {
+  if(e.key === ' '){
+    // stop.disable = true;
+    stop.blur();
+  }
   if(e.key === checkAnswer[0].textContent){
     if(e.key === ' '){
-      console.log("appearWord1");
       checkAnswer[0].style.backgroundColor = '#777';
     }
     wrap.style.backgroundColor = '#666';
