@@ -112,31 +112,43 @@ function appearWords() {
   // setInterval(() => {
   //   checkAnswer[0].style.opacity ^= 1;
   // },500);
-  const appearWord1 = new Promise((resolve, reject) => {
+
+  const appearWord0 = new Promise((resolve,reject) => {
     if(stop.checked){
       reject();
     }
-    setTimeout(() => {
-      if (checkAnswer.length > 1 && checkAnswer[0].textContent != ' ') {
-        checkAnswer0.style.opacity = 1;
+    setTimeout(()=> {
+      if (checkAnswer.length > 1&& checkAnswer[0].textContent != ' '){
         resolve();
       }
-    }, 2000);
-    document.addEventListener('keydown', (e) => {
-      if (e.key === checkAnswer0.textContent)
-        reject();
+    },2000);
+    if (e.key === checkAnswer0.textContent){
+      reject();
+    }
+  })
+  appearWord0.then(()=> {
+    const appearWord1 = new Promise((resolve, reject) => {
+      checkAnswer0.style.className = 'second-initial';
+      checkAnswer0.style.opacity = 1;
+      setTimeout(()=> {
+        if (checkAnswer.length > 5 && checkAnswer[1].textContent != ' '){
+          resolve();
+        }
+      },2000);
+      document.addEventListener('keydown', (e) => {
+        if (e.key === checkAnswer0.textContent)
+          reject();
+      });
     });
-  });
+
   appearWord1.then(() => {
     const appearWord2 = new Promise((resolve, reject) => {
-      if(stop.checked){
-        reject();
-      }
-      if (checkAnswer.length > 5 && checkAnswer[1].textContent != ' ') {
+      checkAnswer1.style.className = 'second-initial';
+      checkAnswer1.style.opacity = 1;
+      decreaseCount(1);
+
+      if (checkAnswer.length > 5 && checkAnswer[2].textContent != ' ') {
         setTimeout(() => {
-          checkAnswer1.className = 'second-initial';
-          checkAnswer1.style.opacity = 1;
-          decreaseCount(1);
           resolve();
         }, 3000);
       }
@@ -147,24 +159,13 @@ function appearWords() {
     });
     appearWord2.then(() => {
       const appearWord3 = new Promise((resolve, reject) => {
-        if(stop.checked){
-          reject();
-        }
-        if (checkAnswer.length > 5 && checkAnswer[2].textContent != ' ') {
-          setTimeout(() => {
-            checkAnswer2.className = 'second-initial';
-            checkAnswer2.style.opacity = 1;
-            decreaseCount(1);
-            resolve();
-          }, 3000);
-        }
-        document.addEventListener('keydown', (e) => {
-          if (e.key === checkAnswer0.textContent)
-            reject();
-        });
+        checkAnswer2.style.className = 'second-initial';
+        checkAnswer2.style.opacity = 1;
+        decreaseCount(1);
       });
     });
   });
+});
 }
 
 const createText = () => {
