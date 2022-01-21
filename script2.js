@@ -218,6 +218,7 @@ const resultCheck = () => {
 
 const keyDown = e => {
   stop.blur();
+  pass_btn.blur();
   if(e.key === checkAnswer[0].textContent){
     if(e.key === ' '){
       checkAnswer[0].style.backgroundColor = '#777';
@@ -260,6 +261,12 @@ const keyDown = e => {
     decreaseCount(1);
   }
 }
+const pressPassButton = () => {
+  if(unChosenIndex.length < 1){
+    return;
+  }
+  decreaseCount(100);
+}
 let unChosenIndex = Array(textLists.length).fill("").map((value,index)=> index);
 let chosenIndex = [];
 let rnd = 0;
@@ -276,3 +283,4 @@ const chooseIndex = () => {
 updateRating();
 createText();
 document.addEventListener('keydown',keyDown);
+pass_btn.addEventListener('click',pressPassButton);
