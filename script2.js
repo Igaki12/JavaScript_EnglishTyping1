@@ -270,6 +270,21 @@ const keyDown = e => {
       appearWords();
     }
     decreaseCount(1);
+    if(!checkAnswer.length) {
+      if((textLists.length - score - miss) <= 1){
+        score++;
+        resultFlag = 1;
+        updateRating();
+        setInterval(() => {
+          gameOver();
+        },210);
+      }else{
+        score++;
+        resultFlag = 1;
+        createText();
+        updateRating();
+      }
+    }
   }
 }
 const pressPassButton = () => {
