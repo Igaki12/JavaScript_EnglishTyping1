@@ -217,7 +217,7 @@ const createText = () => {
 const gameOver = () => {
   const result = confirm(resultCheck());
   if (result === true){
-    window.location.reload();
+    window.location.href='script.js';
   }
 }
 const resultCheck = () => {
