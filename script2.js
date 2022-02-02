@@ -228,6 +228,21 @@ const resultCheck = () => {
 const keyDown = e => {
   stop.blur();
   pass_btn.blur();
+  if(!checkAnswer.length) {
+    if((textLists.length - score - miss) <= 1){
+      score++;
+      resultFlag = 1;
+      updateRating();
+      setInterval(() => {
+        gameOver();
+      },210);
+    }else{
+      score++;
+      resultFlag = 1;
+      createText();
+      updateRating();
+    }
+  }
   if(e.key === checkAnswer[0].textContent){
     if(e.key === ' '){
       checkAnswer[0].style.backgroundColor = '#777';
@@ -270,22 +285,7 @@ const keyDown = e => {
       appearWords();
     }
     decreaseCount(1);
-    if(!checkAnswer.length) {
-      if((textLists.length - score - miss) <= 1){
-        score++;
-        resultFlag = 1;
-        updateRating();
-        setInterval(() => {
-          gameOver();
-        },210);
-      }else{
-        score++;
-        resultFlag = 1;
-        createText();
-        updateRating();
-      }
     }
-  }
 }
 const pressPassButton = () => {
   if(unChosenIndex.length > 0 && resultFlag === 0){
