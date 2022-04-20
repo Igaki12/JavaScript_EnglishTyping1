@@ -13,6 +13,8 @@ const stop = document.getElementById('stop_appearWords');
 const pass_btn = document.getElementById('pass_btn');
 
 // const textLists = [{
+
+// TransformStreamDefaultController
 //   word:"essential",
 //   text:"It is essential that we act quickly.",
 // },{
@@ -227,6 +229,7 @@ const resultCheck = () => {
 
 const keyDown = e => {
   stop.blur();
+  
   pass_btn.blur();
   if(!checkAnswer.length) {
     if((textLists.length - score - miss) <= 1){
